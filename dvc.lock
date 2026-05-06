@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  ingestion:
+    cmd: python src/ingestion.py
+    deps:
+    - path: src/ingestion.py
+      hash: md5
+      md5: 1e0435c16dc912f315a259fc639590df
+      size: 814
+    outs:
+    - path: data/raw/loan_applications.parquet
+      hash: md5
+      md5: f7aae021cd5b5d60b350e1ea08804a70
+      size: 19168
+  preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+    - path: data/raw/loan_applications.parquet
+      hash: md5
+      md5: f7aae021cd5b5d60b350e1ea08804a70
+      size: 19168
+    - path: src/preprocessing.py
+      hash: md5
+      md5: 19cbabf496d2fbe08504c743e84e8093
+      size: 2008
+    outs:
+    - path: data/processed/loan_processed.parquet
+      hash: md5
+      md5: ebe796d9aff4b156fc5052329af93275
+      size: 13982
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/loan_processed.parquet
+      hash: md5
+      md5: ebe796d9aff4b156fc5052329af93275
+      size: 13982
+    - path: src/train.py
+      hash: md5
+      md5: d39de6b0e1d1da35619f9be6a8d3d0ea
+      size: 4111
+    outs:
+    - path: models/best_model.pkl
+      hash: md5
+      md5: 552956b21ffd6f41b9889b6a46f99bfe
+      size: 143510

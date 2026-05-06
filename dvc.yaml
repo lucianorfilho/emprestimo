@@ -1,0 +1,23 @@
+stages:
+  ingestion:
+    cmd: python src/ingestion.py
+    deps:
+      - src/ingestion.py
+    outs:
+      - data/raw/loan_applications.parquet
+
+  preprocessing:
+    cmd: python src/preprocessing.py
+    deps:
+      - data/raw/loan_applications.parquet
+      - src/preprocessing.py
+    outs:
+      - data/processed/loan_processed.parquet
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - data/processed/loan_processed.parquet
+      - src/train.py
+    outs:
+      - models/best_model.pkl
