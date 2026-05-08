@@ -19,11 +19,11 @@ col1, col2 = st.columns(2)
 
 with col1:
     gender = st.selectbox("Gênero", ["Male", "Female"])
-    married = st.selectbox("Estado Civil", ["Yes", "No"])
+    married = st.selectbox("É Casado?", ["Yes", "No"])
     dependents = st.selectbox("Nº de Dependentes", ["0", "1", "2", "3+"])
-    education = st.selectbox("Escolaridade", ["Graduate", "Not Graduate"])
+    education = st.selectbox("Possui Ensino Superior?", ["Graduate", "Not Graduate"])
     self_employed = st.selectbox("Autônomo?", ["No", "Yes"])
-    property_area = st.selectbox("Área do Imóvel", ["Urban", "Semiurban", "Rural"])
+    property_area = st.selectbox("Área do Imóvel onde Reside", ["Urban", "Semiurban", "Rural"])
 
 with col2:
     applicant_income = st.number_input("Renda do Solicitante (R$)", min_value=0, value=5000, step=500)
